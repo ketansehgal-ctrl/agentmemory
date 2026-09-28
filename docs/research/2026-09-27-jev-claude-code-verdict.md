@@ -1,3 +1,17 @@
+# Memory: Jev and Claude Code (decided 2026-09-27)
+
+Long-term summary, curated for agent context:
+
+- Jev (TypeSafe AI typed decision model) is NOT to be merged into Claude Code hooks or into any agentmemory project. Claude Code auto mode already gates Bash commands with a classifier at no charge on Pro/Max/Team; PreToolUse hooks fail open; `/goal` already evaluates stop conditions. #decision #jev #claude-code
+- The "$765 to $3 a month" claim from the @polydao X article is modeled, not measured, and compares against separate frontier calls nobody makes. #evidence
+- Raw Jev confidences are not calibrated (Jev-Calibration dataset): Choice confidence is near noise below 0.95; Noul above 0.95 was 2,104/2,104 correct; isotonic calibration on a few hundred labels fixes ECE to 0.008. Use Noul only, auto-apply only above ~0.9, calibrate per question. #jev #calibration
+- Only allowed experiment: opt-in observation relevance scoring in shadow mode, behind a flag, redacted before egress, compared first against a local reranker, model pinned to jev-1.13.0. #followup
+- Do not put the owner's Gmail address in commits, PRs, or files; use the GitHub noreply address. #privacy
+
+Full report follows.
+
+---
+
 # Should Jev merge with your Claude Code? Verdict and evidence
 
 Date: 2026-09-27. Scope: the two X articles you screenshotted (@polydao "Loop Engineering Meets Jev Engineering" and @thegreatest_sv "JEV: Your LLM's Second Brain"), Claude Code's own current features, the agentmemory fork on this branch, and your Jev-related forks on GitHub.
