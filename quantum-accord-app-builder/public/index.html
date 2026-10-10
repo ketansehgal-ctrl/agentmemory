@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quantum Accord App Studio</title>
+  <meta name="description" content="Describe your mobile app, see it on your phone, and tap Build.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%231f6f4a%27/%3E%3Ctext x=%2716%27 y=%2721%27 font-family=%27sans-serif%27 font-size=%2712%27 font-weight=%27700%27 fill=%27white%27 text-anchor=%27middle%27%3EQA%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Quantum Accord App Studio home">
+      <span class="brand-mark" aria-hidden="true">QA</span>
+      <span class="brand-name">Quantum Accord <strong>App Studio</strong></span>
+    </a>
+    <button id="new-app" class="link-button" hidden>Start a new app</button>
+  </header>
+
+  <main>
+    <section id="start" class="start" hidden>
+      <h1>Describe your app. See it on your phone. Tap Build.</h1>
+      <p class="lead">Tell us what your business needs in plain words. Your app is ready to try in a few minutes, and you can ask for changes as often as you like.</p>
+      <form id="start-form" class="card prompt-card">
+        <label for="start-prompt" class="label">What should your app do?</label>
+        <textarea id="start-prompt" rows="6" maxlength="4000" required
+          placeholder="Example: A catalogue app for my Darjeeling tea business. Show our teas with prices per kg, let importers request a quote or a sample, and add a WhatsApp button to chat with us."></textarea>
+        <div class="examples" aria-label="Example ideas">
+          <button type="button" class="chip" data-example="A catalogue app for my Darjeeling tea export business: tea grades with tasting notes and price per kg, a quote request form for importers, certifications page, and a WhatsApp chat button.">Tea export catalogue</button>
+          <button type="button" class="chip" data-example="A booking app for my salon: services with prices and durations, choose a date and time slot, save bookings on the phone, and call or WhatsApp us.">Salon bookings</button>
+          <button type="button" class="chip" data-example="A menu and ordering app for my restaurant: menu by category with prices, a cart, an order summary sent to us on WhatsApp, and our opening hours and address.">Restaurant orders</button>
+        </div>
+        <div class="actions">
+          <button type="submit" class="primary" id="start-submit">Create my app</button>
+          <span class="hint">Takes about 2–4 minutes.</span>
+        </div>
+        <p class="form-error" id="start-error" role="alert" hidden></p>
+      </form>
+    </section>
+
+    <section id="workspace" class="workspace" hidden>
+      <div class="column">
+        <div class="card">
+          <div class="app-title">
+            <span class="swatch" id="app-swatch" aria-hidden="true"></span>
+            <h2 id="app-name">Your app</h2>
+          </div>
+          <p class="status" id="status" role="status"></p>
+          <ol class="chat" id="chat" aria-label="Conversation"></ol>
+          <form id="change-form" class="change-form">
+            <label for="change-prompt" class="label">Ask for a change</label>
+            <textarea id="change-prompt" rows="3" maxlength="4000" required
+              placeholder="Example: Add a page with our certifications and make the buttons gold."></textarea>
+            <div class="actions">
+              <button type="submit" class="primary" id="change-submit">Update my app</button>
+            </div>
+            <p class="form-error" id="change-error" role="alert" hidden></p>
+          </form>
+        </div>
+
+        <details class="card code" id="code-card">
+          <summary>View the app's code</summary>
+          <div id="code-files"></div>
+        </details>
+      </div>
+
+      <div class="column">
+        <div class="card preview-card">
+          <h3>Try it</h3>
+          <div class="phone">
+            <div class="phone-screen" id="preview-screen">
+              <p class="placeholder" id="preview-placeholder">Your app will appear here.</p>
+              <iframe id="preview-frame" title="App preview" hidden loading="lazy"></iframe>
+            </div>
+          </div>
+          <a id="preview-link" class="secondary" target="_blank" rel="noopener" hidden>Open on your phone</a>
+          <p class="hint" id="preview-hint" hidden>On the page that opens, scan the QR code with the free Expo Go app to run it on your phone.</p>
+        </div>
+
+        <div class="card build-card">
+          <h3>Get the app file</h3>
+          <p class="hint">Builds a real Android app (APK) you can install and share. Store publishing comes next.</p>
+          <button class="primary" id="build-android">Build Android app</button>
+          <p class="form-error" id="build-error" role="alert" hidden></p>
+          <ul class="builds" id="builds"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="key-dialog">
+    <form method="dialog" id="key-form">
+      <h3>Studio access key</h3>
+      <p class="hint">Enter the access key you were given.</p>
+      <input id="key-input" type="password" autocomplete="off" required>
+      <div class="actions"><button class="primary" value="ok">Continue</button></div>
+    </form>
+  </dialog>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
