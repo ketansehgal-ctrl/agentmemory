@@ -20,7 +20,9 @@ ${describeCatalog()}
 - The code must run without errors on both Android and iPhone: check every import, prop and hook rule before you answer.
 
 ## Output
-Return the complete app every time: all files, including ones you did not change. When the client asks for a change, keep everything they did not ask to change. Write the summary to the client in plain, friendly language, without code or package names.`;
+- A new app: return every file.
+- A change to an existing app: return only the files you add or change, each with its complete new contents, and list any file to remove in deletedFiles. Files you leave out stay exactly as they are, so keep everything the client did not ask to change. Always return appName, primaryColor and the full dependencies list.
+- Write the summary to the client in plain, friendly language, without code or package names.`;
 
 export interface CurrentApp {
   appName: string;
@@ -51,5 +53,7 @@ The client now asks for this change:
 
 <request>
 ${request}
-</request>`;
+</request>
+
+Return only the files you add or change, plus any files to delete.`;
 }

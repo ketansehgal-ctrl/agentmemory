@@ -70,7 +70,7 @@ health check on `/api/config`) are ready for Railway.
 | `STUDIO_ACCESS_KEY` | Optional shared key; the page asks for it once |
 | `PORT`, `DATA_DIR`, `WORK_DIR` | Server port, saved projects and keys, build workspaces |
 
-Checks: `npm test` (52 tests), `npm run typecheck`.
+Checks: `npm test` (56 tests), `npm run typecheck`.
 
 ## How it works
 
@@ -78,8 +78,11 @@ Checks: `npm test` (52 tests), `npm run typecheck`.
   output (a JSON schema of app name, colour, files and packages), adaptive thinking at high
   effort, and server-side fallback on refusals. The output is validated: only `App.js` and
   `.js` files under `src/`, and only packages from an allowlist. If the app fails
-  validation, Claude is asked once to fix it. Each change request sends the current files,
-  and Claude returns the whole app again.
+  validation, Claude is asked once to fix it. A new app comes back whole. A change request
+  sends the current files, and Claude returns only the files it adds or edits plus a list of
+  files to delete; the studio merges that into the app. This keeps changes far cheaper than
+  rewriting the whole app. Every request logs a `Claude usage (...)` line with its token
+  counts, so real costs can be read from the server logs.
 - **`src/prompts.ts`**: the instructions Claude follows: platform limits, the quality bar,
   and no website-in-a-wrapper apps, because app stores reject those.
 - **`src/catalog.ts`**: the Expo SDK version and the packages apps may use, pinned to the
@@ -108,10 +111,10 @@ Checks: `npm test` (52 tests), `npm run typecheck`.
 
 ## Costs to expect
 
-- **Claude**: each new app or change is one large request, sometimes two. Expect tens of
-  thousands of output tokens per app, roughly $0.50 to $2 at Opus pricing ($4 / $20 per
-  million input / output tokens). Measure real numbers in the first live runs and price
-  plans from them.
+- **Claude**: at Opus pricing ($4 / $20 per million input / output tokens), a new app is
+  roughly $0.80 to $1.20 (about 35,000 output tokens), and a change roughly $0.30 to $0.50,
+  since only edited files come back. Read the real numbers from the `Claude usage` log lines
+  in the first live runs and adjust plan prices from them.
 - **Expo EAS**: the free plan has a small monthly build quota in a slow queue. Paid plans
   are needed once clients build regularly.
 - **Store accounts**: paid by each client: Google Play $25 once, Apple $99 per year.

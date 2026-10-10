@@ -16,8 +16,35 @@ export const GeneratedAppSchema = z.object({
   files: z.array(AppFileSchema).describe("Every file of the app, complete, including unchanged ones"),
 });
 
+/** What Claude returns for a change request: only what differs from the current app. */
+export const AppChangeSchema = z.object({
+  appName: z.string().describe("Short app name shown under the icon, at most 30 characters"),
+  primaryColor: z.string().describe("Main brand colour as a 6-digit hex code, e.g. #1F6F4A"),
+  summary: z.string().describe("Two or three plain-language sentences for the client about what changed"),
+  dependencies: z.array(z.string()).describe("The full list of optional packages the app uses after the change"),
+  files: z
+    .array(AppFileSchema)
+    .describe("Only the files you add or change, each with its complete new contents; leave out unchanged files"),
+  deletedFiles: z.array(z.string()).describe("Paths of files to remove from the app; empty when none"),
+});
+
 export type AppFile = z.infer<typeof AppFileSchema>;
 export type GeneratedApp = z.infer<typeof GeneratedAppSchema>;
+export type AppChange = z.infer<typeof AppChangeSchema>;
+
+/** The full app after a change: changed files replace their old versions, deleted ones go, the rest stay. */
+export function applyAppChange(files: AppFile[], change: AppChange): GeneratedApp {
+  const byPath = new Map(files.map((f) => [f.path, f]));
+  for (const deleted of change.deletedFiles) byPath.delete(deleted);
+  for (const file of change.files) byPath.set(file.path, file);
+  return {
+    appName: change.appName,
+    primaryColor: change.primaryColor,
+    summary: change.summary,
+    dependencies: change.dependencies,
+    files: [...byPath.values()],
+  };
+}
 
 export const MAX_FILES = 40;
 export const MAX_FILE_BYTES = 120_000;

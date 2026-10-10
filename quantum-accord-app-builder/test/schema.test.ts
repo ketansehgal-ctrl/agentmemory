@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { resolveDependencies } from "../src/catalog.js";
-import { findAppProblems, isSafeAppPath } from "../src/schema.js";
-import { sampleApp } from "./helpers.js";
+import { applyAppChange, findAppProblems, isSafeAppPath } from "../src/schema.js";
+import { sampleApp, sampleChange } from "./helpers.js";
 
 describe("isSafeAppPath", () => {
   it.each(["App.js", "src/theme.js", "src/screens/Home.js", "src/components/ui/Button-2.js"])("accepts %s", (p) => {
@@ -62,5 +62,14 @@ describe("resolveDependencies", () => {
 
   it("ignores packages outside the catalogue", () => {
     expect(resolveDependencies(["left-pad"])).toEqual({});
+  });
+});
+
+describe("applyAppChange", () => {
+  it("keeps unchanged files and takes names, colour and packages from the change", () => {
+    const app = applyAppChange(sampleApp().files, sampleChange({ dependencies: ["@expo/vector-icons"] }));
+    expect(app.files.map((f) => f.path).sort()).toEqual(["App.js", "src/screens/Home.js"]);
+    expect(app.files.find((f) => f.path === "App.js")!.contents).toContain("gold");
+    expect(app).toMatchObject({ primaryColor: "#C8A24A", dependencies: ["@expo/vector-icons"] });
   });
 });

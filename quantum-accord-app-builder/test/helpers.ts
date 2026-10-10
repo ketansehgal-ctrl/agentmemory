@@ -1,6 +1,6 @@
 import type Anthropic from "@anthropic-ai/sdk";
 import type { Project } from "../src/projects.js";
-import type { GeneratedApp } from "../src/schema.js";
+import type { AppChange, GeneratedApp } from "../src/schema.js";
 
 export function sampleApp(overrides: Partial<GeneratedApp> = {}): GeneratedApp {
   return {
@@ -12,6 +12,18 @@ export function sampleApp(overrides: Partial<GeneratedApp> = {}): GeneratedApp {
       { path: "App.js", contents: "export default function App() { return null; }\n" },
       { path: "src/screens/Home.js", contents: "export default function Home() { return null; }\n" },
     ],
+    ...overrides,
+  };
+}
+
+export function sampleChange(overrides: Partial<AppChange> = {}): AppChange {
+  return {
+    appName: "Darjeeling Tea",
+    primaryColor: "#C8A24A",
+    summary: "Your buttons are now gold.",
+    dependencies: ["@react-navigation/native-stack", "@expo/vector-icons"],
+    files: [{ path: "App.js", contents: "export default function App() { return null; } // gold\n" }],
+    deletedFiles: [],
     ...overrides,
   };
 }
