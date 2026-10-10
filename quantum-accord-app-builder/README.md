@@ -45,6 +45,21 @@ npm run dev               # http://localhost:3000
 Production: `npm run build && npm start`. Run it on a server with a persistent disk
 (Railway, Render, Fly.io or a VPS), not serverless: builds run the `eas` CLI and keep files.
 
+### Deploy on Railway
+
+The `Dockerfile` (Node 22 plus Java for `keytool`) and `railway.json` (Dockerfile build,
+health check on `/api/config`) are ready for Railway.
+
+1. Create a service from this folder: either from GitHub (set the service's Root Directory
+   to this folder if it sits inside another repository), or from your computer with the
+   Railway CLI: `railway up` inside this folder.
+2. Add a volume mounted at **`/data`**. Saved projects, signing keys (`/data/studio`) and build
+   workspaces (`/data/work`) live there; without it they vanish on every deploy.
+3. Add the variables from the table below: at least `ANTHROPIC_API_KEY` and
+   `STUDIO_ACCESS_KEY`, plus `EXPO_TOKEN` to switch on builds. Leave `PORT`, `DATA_DIR` and
+   `WORK_DIR` unset; Railway and the Dockerfile set them.
+4. Settings → Networking → Generate Domain, then open it and run one test app end to end.
+
 | Variable | Purpose |
 | --- | --- |
 | `ANTHROPIC_API_KEY` | Claude API key used to write apps |
@@ -55,7 +70,7 @@ Production: `npm run build && npm start`. Run it on a server with a persistent d
 | `STUDIO_ACCESS_KEY` | Optional shared key; the page asks for it once |
 | `PORT`, `DATA_DIR`, `WORK_DIR` | Server port, saved projects and keys, build workspaces |
 
-Checks: `npm test` (51 tests), `npm run typecheck`.
+Checks: `npm test` (52 tests), `npm run typecheck`.
 
 ## How it works
 

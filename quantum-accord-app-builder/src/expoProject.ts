@@ -11,6 +11,13 @@ export interface ExpoProjectOptions {
 
 export const KEYSTORE_RELATIVE_PATH = "credentials/release.keystore";
 
+/**
+ * Kept out of the archive EAS uploads (builds run with EAS_NO_VCS=1, so eas-cli
+ * reads .easignore). Signing secrets stay local: eas-cli reads credentials.json
+ * itself and sends the key with the build request.
+ */
+export const UPLOAD_IGNORE = ["node_modules/", ".expo/", "dist/", "credentials/", "credentials.json"].join("\n") + "\n";
+
 function nameWords(project: Project): string {
   return project.appName.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 }
@@ -96,5 +103,7 @@ export async function writeExpoProject(project: Project, dir: string, options: E
     writeFile(path.join(root, "app.json"), JSON.stringify(appJson, null, 2) + "\n"),
     writeFile(path.join(root, "eas.json"), JSON.stringify(easJson, null, 2) + "\n"),
     writeFile(path.join(root, "index.js"), indexJs),
+    writeFile(path.join(root, ".easignore"), UPLOAD_IGNORE),
+    writeFile(path.join(root, ".gitignore"), UPLOAD_IGNORE),
   ]);
 }

@@ -45,6 +45,14 @@ describe("writeExpoProject", () => {
     expect(await readFile(path.join(dir, "index.js"), "utf8")).toContain("registerRootComponent(App)");
   });
 
+  it("keeps installed packages and signing secrets out of the EAS upload", async () => {
+    const dir = await mkdtemp(path.join(tmpdir(), "qa-expo-"));
+    await writeExpoProject(sampleProject(), dir, options);
+    const ignored = (await readFile(path.join(dir, ".easignore"), "utf8")).split("\n");
+    expect(ignored).toEqual(expect.arrayContaining(["node_modules/", "credentials/", "credentials.json"]));
+    expect(await readFile(path.join(dir, ".gitignore"), "utf8")).toBe(ignored.join("\n"));
+  });
+
   it("keeps the EAS project id and removes files the app no longer has", async () => {
     const dir = await mkdtemp(path.join(tmpdir(), "qa-expo-"));
     await writeExpoProject(sampleProject(), dir, options);
