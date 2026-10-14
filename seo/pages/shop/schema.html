@@ -1,0 +1,120 @@
+<!--
+  quantumaccord.shop — JSON-LD structured data (DRAFT)
+
+  1) Organization: paste into the <head> of EVERY page (site-wide template).
+     Before publishing replace: [logo-file], [Street address], [LinkedIn URL], [IndiaMART URL].
+     Remove any sameAs entry you do not have rather than leaving a placeholder.
+
+  2) FAQPage: paste into the <head> of /darjeeling-tea ONLY.
+     The questions and answers below match the FAQ in pages/shop/darjeeling-tea.md word for word.
+     When you fill the [brackets] on that page, make the identical edit here (Google requires the
+     marked-up FAQ to match the visible text). Do not publish while any [bracket] remains.
+-->
+
+<!-- 1) Organization — all pages -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://quantumaccord.shop/#organization",
+  "name": "Quantum Accord Business Group",
+  "url": "https://quantumaccord.shop",
+  "logo": "https://quantumaccord.shop/[logo-file].png",
+  "slogan": "Connecting India to the World",
+  "description": "Export company based in Darjeeling, India, supplying Darjeeling tea, wine, makhana (foxnuts), onion, garlic, ginger, potato and other fruits and vegetables to importers, distributors and international sourcing partners, with bulk supply, product customization and private labeling.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "[Street address]",
+    "addressLocality": "Darjeeling",
+    "addressRegion": "West Bengal",
+    "addressCountry": "IN"
+  },
+  "telephone": "+91-8130677317",
+  "email": "support@quantumaccord.co.in",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "telephone": "+91-8130677317",
+      "email": "support@quantumaccord.co.in",
+      "url": "https://wa.me/918130677317"
+    }
+  ],
+  "knowsAbout": [
+    "Darjeeling tea",
+    "Private label tea",
+    "Makhana",
+    "Foxnuts",
+    "Onion",
+    "Garlic",
+    "Ginger",
+    "Potato",
+    "Wine"
+  ],
+  "sameAs": [
+    "[LinkedIn URL]",
+    "[IndiaMART URL]",
+    "https://quantumaccordbg.com"
+  ]
+}
+</script>
+
+<!-- 2) FAQPage — /darjeeling-tea only -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://quantumaccord.shop/darjeeling-tea#faq",
+  "url": "https://quantumaccord.shop/darjeeling-tea",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is your tea genuine Darjeeling tea?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Darjeeling tea is a Geographical Indication (GI) product: only tea grown and processed in designated gardens of the Darjeeling hills in West Bengal may be sold under that name. Quantum Accord is based in Darjeeling, and we can share [Tea Board of India certification / garden and invoice details] for each lot on request."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which flushes and grades can you supply?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Darjeeling tea is harvested in four main flushes (first flush, second flush, monsoon and autumnal) and graded from whole-leaf SFTGFOP1 and FTGFOP1 down to broken leaf, fannings and dust. Current availability: [flushes and grades on offer this season]."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the minimum order quantity?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our minimum order for bulk Darjeeling tea is [MOQ]. Private-label orders have a separate minimum of [private label MOQ]."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you pack the tea under our brand?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We offer private labelling and product customization for importers and distributors, including [packaging formats offered]. Our private label page explains the process."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What certifications do you hold?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quantum Accord holds FSSAI, FIEO, ISO, DGFT, GFE and GCCI registrations. Registration numbers are listed on our certifications page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I request samples or a quote?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Send your required flush, grade, quantity and destination country through our contact form, by email to support@quantumaccord.co.in or on WhatsApp at +91 8130677317. Sample terms: [sample policy]."
+      }
+    }
+  ]
+}
+</script>
