@@ -1,0 +1,170 @@
+<!--
+quantumaccordbg.com — JSON-LD structured data. STATUS: DRAFT.
+- Block 1 (Organization): paste in the <head> of every page.
+- Block 2 (FAQPage): paste in the <head> of /voice-automation only.
+- Block 3 (FAQPage): paste in the <head> of /whatsapp-automation only.
+- FAQ text below is copied exactly from voice-automation.md and whatsapp-automation.md.
+  When you fill a [placeholder] in a FAQ answer on the page, make the identical edit here, or Google may ignore the markup.
+- Before publishing: replace or delete "[logo URL]" and "[LinkedIn URL]" (placeholders are not valid URLs).
+  Do not publish FAQPage markup while any answer still contains [brackets].
+- Validate at https://validator.schema.org and https://search.google.com/test/rich-results
+-->
+
+<!-- 1. Organization — all pages -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://quantumaccordbg.com/#organization",
+  "name": "Quantum Accord Business Group",
+  "url": "https://quantumaccordbg.com",
+  "logo": "[logo URL]",
+  "description": "Websites, apps, SaaS and AI voice and WhatsApp automation from one partner.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Darjeeling",
+    "addressCountry": "IN"
+  },
+  "telephone": "+91-8130677317",
+  "email": "support@quantumaccord.co.in",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "telephone": "+91-8130677317",
+    "email": "support@quantumaccord.co.in"
+  },
+  "knowsAbout": [
+    "Website development",
+    "E-commerce website development",
+    "App development",
+    "SaaS product development",
+    "Automated voice calls",
+    "Inbound call handling automation",
+    "WhatsApp automation"
+  ],
+  "sameAs": [
+    "https://quantumaccord.shop",
+    "[LinkedIn URL]"
+  ]
+}
+</script>
+
+<!-- 2. FAQPage — /voice-automation -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://quantumaccordbg.com/voice-automation#faq",
+  "url": "https://quantumaccordbg.com/voice-automation",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an AI voice call agent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An AI voice call agent is an automated system that holds a spoken phone conversation with a caller. It can answer questions, ask qualifying questions, capture details and book appointments using the information and rules you give it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it make outbound calls as well as answer inbound calls?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We set up outbound calls for sales and lead outreach, and inbound call handling for customer support, appointment booking and enquiry triage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will callers know they are speaking with an automated agent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We design the greeting with you, and we recommend being open with callers that they are speaking with an automated assistant. [Confirm disclosure wording and any local calling rules that apply to you.]"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when a caller needs a real person?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The call flow defines when an enquiry should go to your team. [Confirm how handoff works: live transfer, callback request or message to your team.]"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which languages can the voice agent speak?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "[languages supported]"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does voice automation cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pricing depends on your call volume and use case. [pricing] We share a quote after the free consultation."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- 3. FAQPage — /whatsapp-automation -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://quantumaccordbg.com/whatsapp-automation#faq",
+  "url": "https://quantumaccordbg.com/whatsapp-automation",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is WhatsApp automation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WhatsApp automation means using software to send replies, collect details and send updates on WhatsApp without someone typing every message by hand. Your team can still step into any conversation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What can be automated on WhatsApp?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We set up auto-replies to common questions, lead capture, order updates and catalog or product sharing. We design each flow around the messages your business actually receives."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can my team still reply to customers personally?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Automation handles the routine messages, and your team can take over a conversation when a customer needs a person. [Confirm how handoff to your team works.]"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a new phone number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "[Confirm whether clients use their existing number or need a dedicated business number.]"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can WhatsApp automation work with my website or online store?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We can build the website or online store your customers order from and set up WhatsApp order updates for it. [integrations supported]"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does WhatsApp automation cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pricing depends on your message volume and the flows you need. [pricing] We share a quote after the free consultation."
+      }
+    }
+  ]
+}
+</script>
